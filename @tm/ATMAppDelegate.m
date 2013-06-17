@@ -3,14 +3,15 @@
 
 @implementation ATMAppDelegate
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+- (BOOL)application:(UIApplication *)application 
+didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 
     ATMMapViewController *mapViewController = [[ATMMapViewController alloc] init];
     UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:mapViewController];
     self.window.rootViewController = navController;
-    
+
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     return YES;
