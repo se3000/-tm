@@ -7,5 +7,7 @@
 @property (nonatomic) MKMapView *mapView;
 @property (nonatomic) CLLocationManager *locationManager;
 @property (nonatomic, readonly) UIBarButtonItem *refreshButton;
+@property (nonatomic, readonly) UIBarButtonItem *addButton;
+
 
 @end

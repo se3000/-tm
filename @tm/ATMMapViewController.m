@@ -2,19 +2,13 @@
 
 @implementation ATMMapViewController
 
-@synthesize refreshButton;
+@synthesize refreshButton, addButton;
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
+- (id)init {
+    if (self = [super init]) {
         self.locationManager = [[CLLocationManager alloc] init];
         self.locationManager.delegate = self;
         self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
-
-        self.mapView = [[MKMapView alloc] init];
-        self.mapView.delegate = self;
-
-        self.navigationItem.leftBarButtonItem = self.refreshButton;
     }
     return self;
 }
@@ -22,8 +16,13 @@
 - (void)viewDidLoad {
     [self.locationManager startUpdatingLocation];
 
+    self.mapView = [[MKMapView alloc] init];
+    self.mapView.delegate = self;
     self.mapView.showsUserLocation = YES;
-
+    
+    self.navigationItem.title = @"@tm";
+    self.navigationItem.leftBarButtonItem = self.refreshButton;
+    self.navigationItem.rightBarButtonItem = self.addButton;
     self.view = self.mapView;
 }
 
@@ -48,11 +47,21 @@
 
 - (UIBarButtonItem *)refreshButton {
     if (!refreshButton) {
-        refreshButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh 
+        refreshButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:100
                                                                       target:self
                                                                       action:@selector(updateLocation)];
     }
     return refreshButton;
+}
+
+
+- (UIBarButtonItem *)addButton {
+    if (!addButton) {
+        addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
+                                                                  target:self
+                                                                  action:@selector(updateLocation)];
+    }
+    return addButton;
 }
 
 @end
