@@ -8,5 +8,6 @@
 @property (nonatomic) CLLocationManager *locationManager;
 @property (nonatomic, readonly) UIBarButtonItem *refreshButton;
 @property (nonatomic, readonly) UIBarButtonItem *addButton;
+@property (nonatomic, readonly) CLLocation *recentLocation;
 
 @end

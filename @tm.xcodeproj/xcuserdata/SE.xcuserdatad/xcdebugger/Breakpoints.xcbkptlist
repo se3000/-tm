@@ -21,11 +21,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "@tm/LocationViewController.m"
-         timestampString = "393219624.199009"
+         timestampString = "393273560.612113"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "6"
-         endingLineNumber = "6"
+         startingLineNumber = "11"
+         endingLineNumber = "11"
          landmarkName = "-initWithCLLocation:"
          landmarkType = "5">
       </FileBreakpoint>

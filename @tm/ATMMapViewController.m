@@ -49,7 +49,7 @@
 }
 
 - (void)createNewRecord {
-    LocationViewController *locationViewController = [[LocationViewController alloc] init];
+    LocationViewController *locationViewController = [[LocationViewController alloc] initWithCLLocation:self.recentLocation];
     [self.navigationController pushViewController:locationViewController animated:YES];
 }
 
