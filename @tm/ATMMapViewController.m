@@ -1,4 +1,5 @@
 #import "ATMMapViewController.h"
+#import "LocationViewController.h"
 
 @implementation ATMMapViewController
 
@@ -13,7 +14,9 @@
     return self;
 }
 
-- (void)viewDidLoad {
+- (void)viewDidLoad {    
+    [super viewDidLoad];
+
     [self.locationManager startUpdatingLocation];
 
     self.mapView = [[MKMapView alloc] init];
@@ -45,6 +48,11 @@
     [self.locationManager startUpdatingLocation];
 }
 
+- (void)createNewRecord {
+    LocationViewController *locationViewController = [[LocationViewController alloc] init];
+    [self.navigationController pushViewController:locationViewController animated:YES];
+}
+
 - (UIBarButtonItem *)refreshButton {
     if (!refreshButton) {
         refreshButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:100
@@ -54,12 +62,11 @@
     return refreshButton;
 }
 
-
 - (UIBarButtonItem *)addButton {
     if (!addButton) {
         addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
                                                                   target:self
-                                                                  action:@selector(updateLocation)];
+                                                                  action:@selector(createNewRecord)];
     }
     return addButton;
 }

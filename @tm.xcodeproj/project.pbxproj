@@ -19,6 +19,9 @@
 		925300F3176EC3C200C98E78 /* ATMMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 925300F2176EC3C200C98E78 /* ATMMapViewController.m */; };
 		925300F5176EC46D00C98E78 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 925300F4176EC46D00C98E78 /* CoreLocation.framework */; };
 		92F2E184176ED3FB000FB34C /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92F2E183176ED3FB000FB34C /* MapKit.framework */; };
+		92F2E18D177002D9000FB34C /* LocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92F2E18C177002D9000FB34C /* LocationViewController.m */; };
+		92F2E190177004D3000FB34C /* ATMLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 92F2E18F177004D3000FB34C /* ATMLocation.m */; };
+		92F2E19517700B19000FB34C /* ATMLocationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92F2E19417700B19000FB34C /* ATMLocationView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,6 +42,12 @@
 		925300F2176EC3C200C98E78 /* ATMMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATMMapViewController.m; sourceTree = "<group>"; };
 		925300F4176EC46D00C98E78 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		92F2E183176ED3FB000FB34C /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		92F2E18B177002D9000FB34C /* LocationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationViewController.h; sourceTree = "<group>"; };
+		92F2E18C177002D9000FB34C /* LocationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationViewController.m; sourceTree = "<group>"; };
+		92F2E18E177004D3000FB34C /* ATMLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATMLocation.h; sourceTree = "<group>"; };
+		92F2E18F177004D3000FB34C /* ATMLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATMLocation.m; sourceTree = "<group>"; };
+		92F2E19317700B19000FB34C /* ATMLocationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATMLocationView.h; sourceTree = "<group>"; };
+		92F2E19417700B19000FB34C /* ATMLocationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATMLocationView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,11 +98,10 @@
 		925300DA176EC34500C98E78 /* @tm */ = {
 			isa = PBXGroup;
 			children = (
-				925300E3176EC34500C98E78 /* ATMAppDelegate.h */,
-				925300E4176EC34500C98E78 /* ATMAppDelegate.m */,
-				925300F1176EC3C200C98E78 /* ATMMapViewController.h */,
-				925300F2176EC3C200C98E78 /* ATMMapViewController.m */,
+				92F2E1921770050B000FB34C /* Controllers */,
+				92F2E191177004E5000FB34C /* Models */,
 				925300DB176EC34500C98E78 /* Supporting Files */,
+				92F2E19617700B23000FB34C /* Views */,
 			);
 			path = "@tm";
 			sourceTree = "<group>";
@@ -110,6 +118,37 @@
 				925300EA176EC34500C98E78 /* Default-568h@2x.png */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		92F2E191177004E5000FB34C /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				925300E3176EC34500C98E78 /* ATMAppDelegate.h */,
+				925300E4176EC34500C98E78 /* ATMAppDelegate.m */,
+				92F2E18E177004D3000FB34C /* ATMLocation.h */,
+				92F2E18F177004D3000FB34C /* ATMLocation.m */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		92F2E1921770050B000FB34C /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				925300F1176EC3C200C98E78 /* ATMMapViewController.h */,
+				925300F2176EC3C200C98E78 /* ATMMapViewController.m */,
+				92F2E18B177002D9000FB34C /* LocationViewController.h */,
+				92F2E18C177002D9000FB34C /* LocationViewController.m */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		92F2E19617700B23000FB34C /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				92F2E19317700B19000FB34C /* ATMLocationView.h */,
+				92F2E19417700B19000FB34C /* ATMLocationView.m */,
+			);
+			name = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -181,6 +220,9 @@
 				925300E1176EC34500C98E78 /* main.m in Sources */,
 				925300E5176EC34500C98E78 /* ATMAppDelegate.m in Sources */,
 				925300F3176EC3C200C98E78 /* ATMMapViewController.m in Sources */,
+				92F2E18D177002D9000FB34C /* LocationViewController.m in Sources */,
+				92F2E190177004D3000FB34C /* ATMLocation.m in Sources */,
+				92F2E19517700B19000FB34C /* ATMLocationView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

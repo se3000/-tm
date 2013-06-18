@@ -9,5 +9,4 @@
 @property (nonatomic, readonly) UIBarButtonItem *refreshButton;
 @property (nonatomic, readonly) UIBarButtonItem *addButton;
 
-
 @end
