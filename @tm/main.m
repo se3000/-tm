@@ -1,11 +1,3 @@
-//
-//  main.m
-//  @tm
-//
-//  Created by Steve Ellis on 6/17/13.
-//  Copyright (c) 2013 Steve Ellis. All rights reserved.
-//
-
 #import <UIKit/UIKit.h>
 
 #import "ATMAppDelegate.h"

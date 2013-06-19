@@ -1,4 +1,5 @@
 #import "LocationViewController.h"
+#import "ATMTableViewCell.h"
 
 enum {
     FeeSection,
@@ -24,13 +25,12 @@ enum {
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 1;
+    return 2;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (!self.firstCell) {
-        self.firstCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
-        self.firstCell.textLabel.text = @"here";
+        return [[ATMTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
         
     }
     return self.firstCell;

@@ -2,4 +2,7 @@
 
 @interface ATMTableViewCell : UITableViewCell
 
+- (UILabel *)label;
+- (UITextField *)textField;
+
 @end
