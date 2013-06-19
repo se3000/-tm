@@ -5,7 +5,6 @@
 @interface LocationViewController : UITableViewController
 
 @property (nonatomic) ATMLocation *location;
-@property (nonatomic) UITableViewCell *firstCell;
 
 - (id)initWithCLLocation:(CLLocation *)clLocation;
 
