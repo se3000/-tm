@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9244E3F01773D1EE008F66B3 /* ATMMapAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 924B2C431773CBC8000D5121 /* ATMMapAnnotation.m */; };
 		924F5B7317724264004B524C /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 924F5B7217724264004B524C /* QuartzCore.framework */; };
 		925300D5176EC34500C98E78 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 925300D4176EC34500C98E78 /* UIKit.framework */; };
 		925300D7176EC34500C98E78 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 925300D6176EC34500C98E78 /* Foundation.framework */; };
@@ -26,6 +27,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		924B2C421773CBC8000D5121 /* ATMMapAnnotation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ATMMapAnnotation.h; sourceTree = "<group>"; };
+		924B2C431773CBC8000D5121 /* ATMMapAnnotation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ATMMapAnnotation.m; sourceTree = "<group>"; };
 		924F5B7217724264004B524C /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		925300D1176EC34500C98E78 /* @tm.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "@tm.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		925300D4176EC34500C98E78 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -72,8 +75,6 @@
 		925300C8176EC34500C98E78 = {
 			isa = PBXGroup;
 			children = (
-				92F2E183176ED3FB000FB34C /* MapKit.framework */,
-				925300F4176EC46D00C98E78 /* CoreLocation.framework */,
 				925300DA176EC34500C98E78 /* @tm */,
 				925300D3176EC34500C98E78 /* Frameworks */,
 				925300D2176EC34500C98E78 /* Products */,
@@ -91,6 +92,8 @@
 		925300D3176EC34500C98E78 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				92F2E183176ED3FB000FB34C /* MapKit.framework */,
+				925300F4176EC46D00C98E78 /* CoreLocation.framework */,
 				924F5B7217724264004B524C /* QuartzCore.framework */,
 				925300D4176EC34500C98E78 /* UIKit.framework */,
 				925300D6176EC34500C98E78 /* Foundation.framework */,
@@ -136,6 +139,8 @@
 		92F2E191177004E5000FB34C /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				924B2C421773CBC8000D5121 /* ATMMapAnnotation.h */,
+				924B2C431773CBC8000D5121 /* ATMMapAnnotation.m */,
 				925300E3176EC34500C98E78 /* ATMAppDelegate.h */,
 				925300E4176EC34500C98E78 /* ATMAppDelegate.m */,
 				92F2E18E177004D3000FB34C /* ATMLocation.h */,
@@ -221,6 +226,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9244E3F01773D1EE008F66B3 /* ATMMapAnnotation.m in Sources */,
 				925300E1176EC34500C98E78 /* main.m in Sources */,
 				925300E5176EC34500C98E78 /* ATMAppDelegate.m in Sources */,
 				925300F3176EC3C200C98E78 /* ATMMapViewController.m in Sources */,

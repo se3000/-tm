@@ -16,6 +16,7 @@
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
+        self.selectionStyle = UITableViewCellSelectionStyleNone;
         [self.contentView addSubview:self.label];
         [self.contentView addSubview:self.separator];
         [self.contentView addSubview:self.textField];
@@ -23,17 +24,11 @@
     return self;
 }
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated
-{
-    [super setSelected:selected animated:animated];
-}
-
 - (UILabel *)label {
     if (!label) {
         label = [[UILabel alloc] init];
         label.frame = CGRectMake(15, 0, 89, [self cellHeight]);
         label.backgroundColor = [UIColor whiteColor];
-        label.text = @"!";
     }
     return label;
 }

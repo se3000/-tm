@@ -1,6 +1,13 @@
 #import "ATMMapViewController.h"
 #import "LocationViewController.h"
 
+@interface ATMMapViewController()
+
+@property (nonatomic) CLLocation *lastLocation;
+
+@end
+
+
 @implementation ATMMapViewController
 
 @synthesize refreshButton, addButton;
@@ -31,8 +38,8 @@
 
 - (void)locationManager:(CLLocationManager *)manager
      didUpdateLocations:(NSArray *)locations {
-    CLLocation *location = [locations lastObject];
-    CLLocationCoordinate2D coordinate = location.coordinate;
+    self.lastLocation = [locations lastObject];
+    CLLocationCoordinate2D coordinate = self.lastLocation.coordinate;
     
     MKCoordinateRegion newRegion = MKCoordinateRegionMakeWithDistance(coordinate, 250, 250);
     [self.mapView setRegion:newRegion animated:YES];
@@ -49,7 +56,7 @@
 }
 
 - (void)createNewRecord {
-    LocationViewController *locationViewController = [[LocationViewController alloc] initWithCLLocation:self.recentLocation];
+    LocationViewController *locationViewController = [[LocationViewController alloc] initWithCLLocation:self.lastLocation];
     [self.navigationController pushViewController:locationViewController animated:YES];
 }
 
