@@ -10,7 +10,7 @@ enum {
 @interface LocationViewController()
 
 @property (nonatomic) ATMTableViewCell *feeCell, *bankCell;
-@property (nonatomic) UITableViewCell *mapCell;
+@property (nonatomic) UITableViewCell *mapCell, *saveCell;
 
 @end
 
@@ -19,6 +19,7 @@ enum {
 - (id)initWithCLLocation:(CLLocation *)clLocation {
     if (self = [super initWithStyle:UITableViewStyleGrouped]) {
         self.location = [[ATMLocation alloc] initWithCLLocation:clLocation];
+        self.tableView.contentInset = UIEdgeInsetsMake(-35, 0, 0, 0);
     }
     return self;
 }
@@ -29,7 +30,7 @@ enum {
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (section == 0) {
-        return 2;
+        return 3;
     } else {
         return 1;
     }
@@ -37,14 +38,16 @@ enum {
 
 - (UITableViewCell *)tableView:(UITableView *)tableView
          cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.section == 0) {
+    if (indexPath.section == MoneySection) {
         if (indexPath.row == 0) {
-            return self.feeCell;
+            return self.mapCell;
         } else if (indexPath.row == 1) {
+            return self.feeCell;
+        } else if (indexPath.row == 2) {
             return self.bankCell;
         }
     } else {
-        return self.mapCell;
+        return self.saveCell;
     }
     return nil;
 }
@@ -68,26 +71,39 @@ enum {
 - (UITableViewCell *)mapCell {
     if (!_mapCell) {
         _mapCell = [[UITableViewCell alloc] init];
-        _mapCell.selectionStyle = UITableViewCellSelectionStyleNone;
+        [_mapCell setSelectionStyle:UITableViewCellSelectionStyleNone];
         
         ATMMapAnnotation *annotation = [[ATMMapAnnotation alloc] init];
         annotation.coordinate = self.location.clLocation.coordinate;
         MKPinAnnotationView *annotationView = [[MKPinAnnotationView alloc] init];
         annotationView.annotation = annotation;
         
-        MKMapView *mapView = [[MKMapView alloc] initWithFrame:CGRectMake(0, 0, 320, 200)];
-        mapView.region = [mapView regionThatFits:MKCoordinateRegionMakeWithDistance(self.location.clLocation.coordinate, 0.1, 0.1)];
+        MKMapView *mapView = [[MKMapView alloc] initWithFrame:CGRectMake(0, 0, 320, 100)];
+        mapView.userInteractionEnabled = false;
+        mapView.region = [mapView regionThatFits:MKCoordinateRegionMakeWithDistance(annotation.coordinate, 0.1, 0.1)];
+        [mapView addAnnotation:annotation];
         
-        [mapView addAnnotation:annotation];    
         [_mapCell.contentView addSubview:mapView];
     }
     return _mapCell;
 }
 
+- (UITableViewCell *)saveCell {
+    if (!_saveCell) {
+        _saveCell = [[UITableViewCell alloc] init];
+        UIButton *button = [UIButton buttonWithType:UIButtonTypeSystem];
+        button.frame = CGRectMake(0.0, 0.0, 320, 44);
+        [button setTitle:@"Save" forState:UIControlStateNormal];
+        
+        [_saveCell addSubview:button];
+    }
+    return _saveCell;
+}
+
 - (CGFloat)tableView:(UITableView *)tableView 
 heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.section == LocationSection) {
-        return 200;
+    if (indexPath.row == 0 && indexPath.section == 0) {
+        return 100;
     } else {
         return [super tableView:tableView heightForRowAtIndexPath:indexPath];
     }
