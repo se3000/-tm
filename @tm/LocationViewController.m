@@ -1,6 +1,7 @@
 #import "LocationViewController.h"
 #import "ATMTableViewCell.h"
 #import "ATMMapAnnotation.h"
+#import <AFNetworking/AFJSONRequestOperation.h>
 
 enum {
     MoneySection,
@@ -94,6 +95,7 @@ enum {
         UIButton *button = [UIButton buttonWithType:UIButtonTypeSystem];
         button.frame = CGRectMake(0.0, 0.0, 320, 44);
         [button setTitle:@"Save" forState:UIControlStateNormal];
+        [button addTarget:self.location action:@selector(save) forControlEvents:UIControlEventTouchUpInside];
         
         [_saveCell addSubview:button];
     }
@@ -107,6 +109,13 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     } else {
         return [super tableView:tableView heightForRowAtIndexPath:indexPath];
     }
+}
+
+- (void)saveATMLocation {
+    self.location.fee = [self.feeCell.textField.text floatValue];
+    self.location.bank = self.bankCell.textField.text;
+    
+    [self.location save];
 }
 
 @end
