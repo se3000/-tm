@@ -1,5 +1,6 @@
 #import "ATMMapViewController.h"
 #import "LocationViewController.h"
+#import "ATMLocationSearchClient.h"
 
 @interface ATMMapViewController()
 
@@ -40,6 +41,7 @@
      didUpdateLocations:(NSArray *)locations {
     self.lastLocation = [locations lastObject];
     CLLocationCoordinate2D coordinate = self.lastLocation.coordinate;
+    [[ATMLocationSearchClient jsonClient] getWithCoordinate:coordinate];
     
     MKCoordinateRegion newRegion = MKCoordinateRegionMakeWithDistance(coordinate, 250, 250);
     [self.mapView setRegion:newRegion animated:YES];

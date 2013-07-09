@@ -15,8 +15,12 @@
 - (void)post:(NSDictionary *)params {
     [self postPath:@"/locations" 
         parameters:@{@"location":params}
-           success:^(AFHTTPRequestOperation *request, id responseObject){NSLog(@"SUCCESS");}
-           failure:^(AFHTTPRequestOperation *request, NSError *error){NSLog(@"FAILURE");}];
+           success:^(AFHTTPRequestOperation *request, id responseObject) {
+               NSLog(@"SUCCESS");
+           }
+           failure:^(AFHTTPRequestOperation *request, NSError *error) {
+               NSLog(@"FAILURE");
+           }];
 }
 
 @end
