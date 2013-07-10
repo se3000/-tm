@@ -9,7 +9,6 @@
 @property (nonatomic) float fee;
 
 - (id)initWithCLLocation:(CLLocation *)location;
-- (void)save;
 - (NSDictionary *)dictionary;
 
 @end

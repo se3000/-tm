@@ -1,9 +1,10 @@
+#import "ATMLocation.h"
+#import "ATMLocationCreateDelegate.h"
 #import <UIKit/UIKit.h>
 #import <CoreLocation/CoreLocation.h>
-#import "ATMLocation.h"
 #import <MapKit/MapKit.h>
 
-@interface LocationViewController : UITableViewController <UITableViewDelegate>
+@interface LocationViewController : UITableViewController <UITableViewDelegate, ATMLocationCreateDelegate>
 
 @property (nonatomic) ATMLocation *location;
 

@@ -25,8 +25,4 @@
     return attributes;
 }
 
-- (void)save {
-    [[ATMLocationCreateClient jsonClient] post:[self dictionary]];
-}
-
 @end

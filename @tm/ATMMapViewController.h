@@ -1,8 +1,9 @@
 #import <UIKit/UIKit.h>
 #import <CoreLocation/CoreLocation.h>
 #import <MapKit/MapKit.h>
+#import "ATMLocationSearchDelegate.h"
 
-@interface ATMMapViewController : UIViewController <CLLocationManagerDelegate, MKMapViewDelegate>
+@interface ATMMapViewController : UIViewController <CLLocationManagerDelegate, MKMapViewDelegate, ATMLocationSearchDelegate>
 
 @property (nonatomic) MKMapView *mapView;
 @property (nonatomic) CLLocationManager *locationManager;

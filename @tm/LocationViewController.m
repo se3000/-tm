@@ -1,6 +1,7 @@
 #import "LocationViewController.h"
 #import "ATMTableViewCell.h"
 #import "ATMMapAnnotation.h"
+#import "ATMLocationCreateClient.h"
 #import <AFNetworking/AFJSONRequestOperation.h>
 
 enum {
@@ -74,11 +75,7 @@ enum {
         _mapCell = [[UITableViewCell alloc] init];
         [_mapCell setSelectionStyle:UITableViewCellSelectionStyleNone];
         
-        ATMMapAnnotation *annotation = [[ATMMapAnnotation alloc] init];
-        annotation.coordinate = self.location.clLocation.coordinate;
-        MKPinAnnotationView *annotationView = [[MKPinAnnotationView alloc] init];
-        annotationView.annotation = annotation;
-        
+        ATMMapAnnotation *annotation = [[ATMMapAnnotation alloc] initWithCoordinate:self.location.clLocation.coordinate];
         MKMapView *mapView = [[MKMapView alloc] initWithFrame:CGRectMake(0, 0, 320, 100)];
         mapView.userInteractionEnabled = false;
         mapView.region = [mapView regionThatFits:MKCoordinateRegionMakeWithDistance(annotation.coordinate, 0.1, 0.1)];
@@ -95,7 +92,7 @@ enum {
         UIButton *button = [UIButton buttonWithType:UIButtonTypeSystem];
         button.frame = CGRectMake(0.0, 0.0, 320, 44);
         [button setTitle:@"Save" forState:UIControlStateNormal];
-        [button addTarget:self.location action:@selector(save) forControlEvents:UIControlEventTouchUpInside];
+        [button addTarget:self action:@selector(saveATMLocation) forControlEvents:UIControlEventTouchUpInside];
         
         [_saveCell addSubview:button];
     }
@@ -115,7 +112,12 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     self.location.fee = [self.feeCell.textField.text floatValue];
     self.location.bank = self.bankCell.textField.text;
     
-    [self.location save];
+    [[ATMLocationCreateClient jsonClient] post:[self.location dictionary] 
+                                  withDelegate:self];
+}
+
+- (void)locationCreated {
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 @end

@@ -52,6 +52,8 @@
 		925300F4176EC46D00C98E78 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		92C4029F178C58480093C899 /* ATMLocationSearchClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ATMLocationSearchClient.h; path = ../ATMLocationSearchClient.h; sourceTree = "<group>"; };
 		92C402A0178C58480093C899 /* ATMLocationSearchClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ATMLocationSearchClient.m; path = ../ATMLocationSearchClient.m; sourceTree = "<group>"; };
+		92C402A2178C91550093C899 /* ATMLocationSearchDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATMLocationSearchDelegate.h; sourceTree = "<group>"; };
+		92C402A4178D20E90093C899 /* ATMLocationCreateDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATMLocationCreateDelegate.h; sourceTree = "<group>"; };
 		92D9EC7B1781DAD600DAFF72 /* ATMLocationCreateClient.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ATMLocationCreateClient.h; sourceTree = "<group>"; };
 		92D9EC7D1781DB0700DAFF72 /* ATMLocationCreateClient.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ATMLocationCreateClient.m; sourceTree = "<group>"; };
 		92F2E183176ED3FB000FB34C /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
@@ -119,6 +121,7 @@
 			children = (
 				92F2E1921770050B000FB34C /* Controllers */,
 				92F2E191177004E5000FB34C /* Models */,
+				92C402A3178C91890093C899 /* Protocols */,
 				925300DB176EC34500C98E78 /* Supporting Files */,
 				92B42CEC17724B8D00C24B69 /* Views */,
 			);
@@ -146,6 +149,15 @@
 				92F2E1991770E13A000FB34C /* ATMTableViewCell.m */,
 			);
 			name = Views;
+			sourceTree = "<group>";
+		};
+		92C402A3178C91890093C899 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				92C402A4178D20E90093C899 /* ATMLocationCreateDelegate.h */,
+				92C402A2178C91550093C899 /* ATMLocationSearchDelegate.h */,
+			);
+			name = Protocols;
 			sourceTree = "<group>";
 		};
 		92F2E191177004E5000FB34C /* Models */ = {
