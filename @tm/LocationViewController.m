@@ -76,9 +76,9 @@ enum {
         [_mapCell setSelectionStyle:UITableViewCellSelectionStyleNone];
         
         ATMMapAnnotation *annotation = [[ATMMapAnnotation alloc] initWithCoordinate:self.location.clLocation.coordinate];
-        MKMapView *mapView = [[MKMapView alloc] initWithFrame:CGRectMake(0, 0, 320, 100)];
+        MKMapView *mapView = [[MKMapView alloc] initWithFrame:CGRectMake(0, 0, 320, 200)];
         mapView.userInteractionEnabled = false;
-        mapView.region = [mapView regionThatFits:MKCoordinateRegionMakeWithDistance(annotation.coordinate, 0.1, 0.1)];
+        mapView.region = [mapView regionThatFits:MKCoordinateRegionMakeWithDistance(annotation.coordinate, 1, 1)];
         [mapView addAnnotation:annotation];
         
         [_mapCell.contentView addSubview:mapView];
@@ -102,7 +102,7 @@ enum {
 - (CGFloat)tableView:(UITableView *)tableView 
 heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.row == 0 && indexPath.section == 0) {
-        return 100;
+        return 200;
     } else {
         return [super tableView:tableView heightForRowAtIndexPath:indexPath];
     }

@@ -67,8 +67,7 @@
 
 - (void)handleLocationData:(NSArray *)locations {
     for (NSDictionary *locationData in locations) {
-        CLLocationCoordinate2D coordinate = [self coordinateWithDictionary:locationData];
-        ATMMapAnnotation *annotation = [[ATMMapAnnotation alloc] initWithCoordinate:coordinate];
+        ATMMapAnnotation *annotation = [[ATMMapAnnotation alloc] initWithDictionary:locationData];
         [self.mapView addAnnotation:annotation];
     }
     [self.mapView setNeedsDisplay];
