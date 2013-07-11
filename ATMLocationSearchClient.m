@@ -21,11 +21,11 @@
        parameters:params 
           success:^(AFHTTPRequestOperation *operation, id responseObject) {
               NSArray *locationData = [responseObject valueForKey:@"locations"];
-              NSLog(@"SUCCESS: %@", locationData);
+              NSLog(@"search SUCCESS");
               [delegate handleLocationData:locationData];
           }
           failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-              NSLog(@"FAILIURE: %@", error);
+              NSLog(@"search FAILIURE: %@", error);
           }];
 }
 

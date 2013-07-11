@@ -76,8 +76,10 @@ enum {
         [_mapCell setSelectionStyle:UITableViewCellSelectionStyleNone];
         
         ATMMapAnnotation *annotation = [[ATMMapAnnotation alloc] initWithCoordinate:self.location.clLocation.coordinate];
+        annotation.pinView.draggable = YES;
+        
         MKMapView *mapView = [[MKMapView alloc] initWithFrame:CGRectMake(0, 0, 320, 200)];
-        mapView.userInteractionEnabled = false;
+        mapView.delegate = self;
         mapView.region = [mapView regionThatFits:MKCoordinateRegionMakeWithDistance(annotation.coordinate, 1, 1)];
         [mapView addAnnotation:annotation];
         
@@ -118,6 +120,11 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath {
 
 - (void)locationCreated {
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (MKAnnotationView *)mapView:(MKMapView *)mapView
+            viewForAnnotation:(ATMMapAnnotation *)annotation {    
+    return annotation.pinView;
 }
 
 @end

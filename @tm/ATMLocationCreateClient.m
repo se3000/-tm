@@ -16,11 +16,11 @@
     [self postPath:@"/locations" 
         parameters:@{@"location":params}
            success:^(AFHTTPRequestOperation *request, id responseObject) {
-               NSLog(@"SUCCESS");
+               NSLog(@"create SUCCESS");
                [delegate locationCreated];
            }
            failure:^(AFHTTPRequestOperation *request, NSError *error) {
-               NSLog(@"FAILURE");
+               NSLog(@"create FAILURE");
            }];
 }
 
