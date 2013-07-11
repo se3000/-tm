@@ -3,17 +3,17 @@
 
 @implementation ATMLocation
 
-- (id)initWithCLLocation:(CLLocation *)location {
+- (id)initWithCoordinate:(CLLocationCoordinate2D)coordinate {
     if (self = [self init]) {
-        self.clLocation = location;
+        self.coordinate = coordinate;
     }
     return self;
 }
 
 - (NSDictionary *)dictionary {
     NSNumber *feeNumber = [NSNumber numberWithFloat:self.fee];
-    NSNumber *latitude = [NSNumber numberWithFloat:self.clLocation.coordinate.latitude];
-    NSNumber *longitude = [NSNumber numberWithFloat:self.clLocation.coordinate.longitude];
+    NSNumber *latitude = [NSNumber numberWithFloat:self.coordinate.latitude];
+    NSNumber *longitude = [NSNumber numberWithFloat:self.coordinate.longitude];
     NSString *bankName = self.bank;
     if (!bankName)
         bankName = @"";

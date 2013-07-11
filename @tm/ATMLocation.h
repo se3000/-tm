@@ -4,11 +4,11 @@
 
 @interface ATMLocation : NSObject
 
-@property (nonatomic) CLLocation *clLocation;
+@property (nonatomic) CLLocationCoordinate2D coordinate;
 @property (nonatomic) NSString *bank;
 @property (nonatomic) float fee;
 
-- (id)initWithCLLocation:(CLLocation *)location;
+- (id)initWithCoordinate:(CLLocationCoordinate2D)coordinate;
 - (NSDictionary *)dictionary;
 
 @end

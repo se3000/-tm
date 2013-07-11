@@ -20,7 +20,7 @@ enum {
 
 - (id)initWithCLLocation:(CLLocation *)clLocation {
     if (self = [super initWithStyle:UITableViewStyleGrouped]) {
-        self.location = [[ATMLocation alloc] initWithCLLocation:clLocation];
+        self.location = [[ATMLocation alloc] initWithCoordinate:clLocation.coordinate];
         self.tableView.contentInset = UIEdgeInsetsMake(-35, 0, 0, 0);
     }
     return self;
@@ -75,7 +75,7 @@ enum {
         _mapCell = [[UITableViewCell alloc] init];
         [_mapCell setSelectionStyle:UITableViewCellSelectionStyleNone];
         
-        ATMMapAnnotation *annotation = [[ATMMapAnnotation alloc] initWithCoordinate:self.location.clLocation.coordinate];
+        ATMMapAnnotation *annotation = [[ATMMapAnnotation alloc] initWithCoordinate:self.location.coordinate];
         annotation.pinView.draggable = YES;
         
         MKMapView *mapView = [[MKMapView alloc] initWithFrame:CGRectMake(0, 0, 320, 200)];
@@ -120,6 +120,14 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath {
 
 - (void)locationCreated {
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (void)mapView:(MKMapView *)mapView 
+ annotationView:(MKAnnotationView *)view 
+didChangeDragState:(MKAnnotationViewDragState)newState 
+   fromOldState:(MKAnnotationViewDragState)oldState {
+    if (newState == MKAnnotationViewDragStateEnding)
+        self.location.coordinate = view.annotation.coordinate;
 }
 
 - (MKAnnotationView *)mapView:(MKMapView *)mapView

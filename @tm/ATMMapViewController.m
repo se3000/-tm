@@ -91,16 +91,11 @@
     return addButton;
 }
 
-#pragma mark private
-
-- (CLLocationCoordinate2D)coordinateWithDictionary:(NSDictionary *)dictionary {
-    NSDictionary *coordDictionary = [dictionary valueForKey:@"coordinate"];
-    
-    double latitude = [[coordDictionary valueForKey:@"latitude"] doubleValue];
-    double longitude = [[coordDictionary valueForKey:@"longitude"] doubleValue];
-    CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake(latitude, longitude);
-    
-    return coordinate;
+- (MKAnnotationView *)mapView:(MKMapView *)mapView
+            viewForAnnotation:(id<MKAnnotation>)annotation {
+    if ([annotation isMemberOfClass:[ATMMapAnnotation class]])
+        return [annotation performSelector:@selector(pinView)];
+    return nil;
 }
 
 @end
