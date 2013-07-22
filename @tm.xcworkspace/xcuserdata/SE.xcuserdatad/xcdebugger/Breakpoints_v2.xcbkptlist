@@ -102,11 +102,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "@tm/ATMLocationCreateClient.m"
-            timestampString = "395125874.855662"
+            timestampString = "395710511.693301"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "19"
-            endingLineNumber = "19"
+            startingLineNumber = "20"
+            endingLineNumber = "20"
             landmarkName = "-post:withDelegate:"
             landmarkType = "5">
          </BreakpointContent>

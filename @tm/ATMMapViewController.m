@@ -36,19 +36,19 @@
     self.view = self.mapView;
 }
 
-- (void)viewDidAppear:(BOOL)animated {
+- (void)viewWillAppear:(BOOL)animated {
     [self.locationManager startUpdatingLocation];
 }
 
 - (void)locationManager:(CLLocationManager *)manager
-     didUpdateLocations:(NSArray *)locations {
+     didUpdateLocations:(NSArray *)locations {    
     self.lastLocation = [locations lastObject];
     CLLocationCoordinate2D coordinate = self.lastLocation.coordinate;
     [[ATMLocationSearchClient jsonClient] getWithCoordinate:coordinate andDelegate:self];
     
     MKCoordinateRegion newRegion = MKCoordinateRegionMakeWithDistance(coordinate, 250, 250);
-    [self.mapView setRegion:newRegion animated:YES];
     [self.locationManager stopUpdatingLocation];
+    [self.mapView setRegion:newRegion animated:NO];
 }
 
 - (void)locationManager:(CLLocationManager *)manager
