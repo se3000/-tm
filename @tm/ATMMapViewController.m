@@ -6,6 +6,7 @@
 @interface ATMMapViewController()
 
 @property (nonatomic) CLLocation *lastLocation;
+@property (nonatomic) NSMutableArray *pinAnnotations;
 
 @end
 
@@ -19,6 +20,7 @@
         self.locationManager = [[CLLocationManager alloc] init];
         self.locationManager.delegate = self;
         self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+        self.pinAnnotations = [[NSMutableArray alloc] init];
     }
     return self;
 }
@@ -31,17 +33,24 @@
     self.mapView.showsUserLocation = YES;
     
     self.navigationItem.title = @"@tm";
-    self.navigationItem.leftBarButtonItem = self.refreshButton;
-    self.navigationItem.rightBarButtonItem = self.addButton;
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:100
+                                                                                          target:self.locationManager
+                                                                                          action:@selector(startUpdatingLocation)];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
+                                                                                           target:self
+                                                                                           action:@selector(createNewRecord)];
     self.view = self.mapView;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
+    [self.mapView removeAnnotations:self.pinAnnotations];
     [self.locationManager startUpdatingLocation];
 }
 
 - (void)locationManager:(CLLocationManager *)manager
-     didUpdateLocations:(NSArray *)locations {    
+     didUpdateLocations:(NSArray *)locations {
+    [self.locationManager stopUpdatingLocation];
+    
     self.lastLocation = [locations lastObject];
     CLLocationCoordinate2D coordinate = self.lastLocation.coordinate;
     [[ATMLocationSearchClient jsonClient] getWithCoordinate:coordinate andDelegate:self];
@@ -56,10 +65,6 @@
     NSLog(@"Failed to update location");
 }
 
-- (void)updateLocation {
-    [self.locationManager startUpdatingLocation];
-}
-
 - (void)createNewRecord {
     LocationViewController *locationViewController = [[LocationViewController alloc] initWithCLLocation:self.lastLocation];
     [self.navigationController pushViewController:locationViewController animated:YES];
@@ -67,28 +72,8 @@
 
 - (void)handleLocationData:(NSArray *)locations {
     for (NSDictionary *locationData in locations) {
-        ATMMapAnnotation *annotation = [[ATMMapAnnotation alloc] initWithDictionary:locationData];
-        [self.mapView addAnnotation:annotation];
+        [self addAnnotation:[[ATMMapAnnotation alloc] initWithDictionary:locationData]];
     }
-    [self.mapView setNeedsDisplay];
-}
-
-- (UIBarButtonItem *)refreshButton {
-    if (!refreshButton) {
-        refreshButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:100
-                                                                      target:self
-                                                                      action:@selector(updateLocation)];
-    }
-    return refreshButton;
-}
-
-- (UIBarButtonItem *)addButton {
-    if (!addButton) {
-        addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
-                                                                  target:self
-                                                                  action:@selector(createNewRecord)];
-    }
-    return addButton;
 }
 
 - (MKAnnotationView *)mapView:(MKMapView *)mapView
@@ -98,4 +83,9 @@
     return nil;
 }
 
+- (void)addAnnotation:(ATMMapAnnotation *)annotation {
+    [self.pinAnnotations addObject:annotation];
+    [self.mapView addAnnotation:annotation];
+}
+    
 @end
