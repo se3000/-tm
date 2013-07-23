@@ -155,6 +155,8 @@
 		92C402A3178C91890093C899 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
+				925300E3176EC34500C98E78 /* ATMAppDelegate.h */,
+				925300E4176EC34500C98E78 /* ATMAppDelegate.m */,
 				92C402A4178D20E90093C899 /* ATMLocationCreateDelegate.h */,
 				92B76468179D97B800BDDCBF /* ATMMapAnnotationDelegate.h */,
 				92C402A2178C91550093C899 /* ATMLocationSearchDelegate.h */,
@@ -171,8 +173,6 @@
 				92C402A0178C58480093C899 /* ATMLocationSearchClient.m */,
 				924B2C421773CBC8000D5121 /* ATMMapAnnotation.h */,
 				924B2C431773CBC8000D5121 /* ATMMapAnnotation.m */,
-				925300E3176EC34500C98E78 /* ATMAppDelegate.h */,
-				925300E4176EC34500C98E78 /* ATMAppDelegate.m */,
 				92F2E18E177004D3000FB34C /* ATMLocation.h */,
 				92F2E18F177004D3000FB34C /* ATMLocation.m */,
 			);

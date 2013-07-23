@@ -13,6 +13,7 @@ enum {
 
 @property (nonatomic) ATMTableViewCell *feeCell, *bankCell;
 @property (nonatomic) UITableViewCell *mapCell, *saveCell;
+@property (nonatomic) UIButton *saveButton;
 
 @end
 
@@ -31,6 +32,8 @@ enum {
         self.location = location;
         self.feeCell.textField.text = location.fee;
         self.bankCell.textField.text = location.bankName;
+        
+        self.editable = NO;
     }
     return self;
 }
@@ -100,12 +103,8 @@ enum {
 - (UITableViewCell *)saveCell {
     if (!_saveCell) {
         _saveCell = [[UITableViewCell alloc] init];
-        UIButton *button = [UIButton buttonWithType:UIButtonTypeSystem];
-        button.frame = CGRectMake(0.0, 0.0, 320, 44);
-        [button setTitle:@"Save" forState:UIControlStateNormal];
-        [button addTarget:self action:@selector(saveATMLocation) forControlEvents:UIControlEventTouchUpInside];
-        
-        [_saveCell addSubview:button];
+        self.saveButton.frame = CGRectMake(0.0, 0.0, 320, 44);
+        [_saveCell addSubview:self.saveButton];
     }
     return _saveCell;
 }
@@ -142,6 +141,32 @@ didChangeDragState:(MKAnnotationViewDragState)newState
 - (MKAnnotationView *)mapView:(MKMapView *)mapView
             viewForAnnotation:(ATMMapAnnotation *)annotation {    
     return annotation.pinView;
+}
+
+- (UIButton *)saveButton {
+    if (!_saveButton) {
+        _saveButton = [UIButton buttonWithType:UIButtonTypeSystem];
+        [_saveButton setTitle:@"Save"
+                         forState:UIControlStateNormal];
+        [_saveButton setTitle:@"Save"
+                         forState:UIControlStateDisabled];
+        [_saveButton addTarget:self
+                            action:@selector(saveATMLocation)
+                  forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _saveButton;
+}
+
+- (void)setEditable:(BOOL)editable {
+    _editable = editable;
+    self.feeCell.textField.enabled = editable;
+    self.bankCell.textField.enabled = editable;
+    self.saveButton.enabled = editable;
+    if (editable) {
+        self.saveCell.selectionStyle = UITableViewCellSelectionStyleGray;
+    } else {
+        self.saveCell.selectionStyle = UITableViewCellSelectionStyleNone;
+    }
 }
 
 @end
