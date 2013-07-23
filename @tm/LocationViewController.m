@@ -18,10 +18,19 @@ enum {
 
 @implementation LocationViewController
 
-- (id)initWithCLLocation:(CLLocation *)clLocation {
+- (id)initWithCoordinate:(CLLocationCoordinate2D)coordinate {
     if (self = [super initWithStyle:UITableViewStyleGrouped]) {
-        self.location = [[ATMLocation alloc] initWithCoordinate:clLocation.coordinate];
+        self.location = [[ATMLocation alloc] initWithCoordinate:coordinate];
         self.tableView.contentInset = UIEdgeInsetsMake(-35, 0, 0, 0);
+    }
+    return self;
+}
+
+- (id)initWithATMLocation:(ATMLocation *)location {
+    if (self = [self initWithCoordinate:location.coordinate]) {
+        self.location = location;
+        self.feeCell.textField.text = location.fee;
+        self.bankCell.textField.text = location.bankName;
     }
     return self;
 }
@@ -111,8 +120,8 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath {
 }
 
 - (void)saveATMLocation {
-    self.location.fee = [self.feeCell.textField.text floatValue];
-    self.location.bank = self.bankCell.textField.text;
+    self.location.fee = self.feeCell.textField.text;
+    self.location.bankName = self.bankCell.textField.text;
     
     [[ATMLocationCreateClient jsonClient] post:[self.location dictionary] 
                                   withDelegate:self];

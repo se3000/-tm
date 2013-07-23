@@ -10,19 +10,37 @@
     return self;
 }
 
+- (id)initWithDictionary:(NSDictionary *)dictionary {
+    NSDictionary *coordDictionary = [dictionary valueForKey:@"coordinate"];
+    double latitude = [[coordDictionary valueForKey:@"latitude"] doubleValue];
+    double longitude = [[coordDictionary valueForKey:@"longitude"] doubleValue];
+    CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake(latitude, longitude);
+    
+    if (self = [self initWithCoordinate:coordinate]) {
+        self.fee = [[dictionary valueForKey:@"fee"] stringValue];
+        self.bankName = [dictionary valueForKey:@"bank_name"];
+    }
+    return self;
+}
+
 - (NSDictionary *)dictionary {
-    NSNumber *feeNumber = [NSNumber numberWithFloat:self.fee];
     NSNumber *latitude = [NSNumber numberWithFloat:self.coordinate.latitude];
     NSNumber *longitude = [NSNumber numberWithFloat:self.coordinate.longitude];
-    NSString *bankName = self.bank;
+    NSString *bankName = self.bankName;
     if (!bankName)
         bankName = @"";
     NSDictionary *attributes = @{
-             @"fee": feeNumber,
+             @"fee": self.fee,
              @"bank_name": bankName,
              @"latitude": latitude,
              @"longitude": longitude};
     return attributes;
+}
+
+- (NSString *)fee {
+    if (!_fee)
+        _fee = @"";
+    return _fee;
 }
 
 @end

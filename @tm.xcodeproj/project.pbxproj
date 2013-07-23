@@ -50,6 +50,7 @@
 		925300F1176EC3C200C98E78 /* ATMMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATMMapViewController.h; sourceTree = "<group>"; };
 		925300F2176EC3C200C98E78 /* ATMMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATMMapViewController.m; sourceTree = "<group>"; };
 		925300F4176EC46D00C98E78 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		92B76468179D97B800BDDCBF /* ATMMapAnnotationDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATMMapAnnotationDelegate.h; sourceTree = "<group>"; };
 		92C4029F178C58480093C899 /* ATMLocationSearchClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ATMLocationSearchClient.h; path = ../ATMLocationSearchClient.h; sourceTree = "<group>"; };
 		92C402A0178C58480093C899 /* ATMLocationSearchClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ATMLocationSearchClient.m; path = ../ATMLocationSearchClient.m; sourceTree = "<group>"; };
 		92C402A2178C91550093C899 /* ATMLocationSearchDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATMLocationSearchDelegate.h; sourceTree = "<group>"; };
@@ -155,6 +156,7 @@
 			isa = PBXGroup;
 			children = (
 				92C402A4178D20E90093C899 /* ATMLocationCreateDelegate.h */,
+				92B76468179D97B800BDDCBF /* ATMMapAnnotationDelegate.h */,
 				92C402A2178C91550093C899 /* ATMLocationSearchDelegate.h */,
 			);
 			name = Protocols;

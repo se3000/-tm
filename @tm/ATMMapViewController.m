@@ -66,15 +66,12 @@
 }
 
 - (void)createNewRecord {
-    LocationViewController *locationViewController = [[LocationViewController alloc] initWithCLLocation:self.lastLocation];
-    [self.navigationController pushViewController:locationViewController animated:YES];
+    LocationViewController *locationViewController = [[LocationViewController alloc] initWithCoordinate:self.lastLocation.coordinate];
+    [self.navigationController pushViewController:locationViewController
+                                         animated:YES];
 }
 
-- (void)handleLocationData:(NSArray *)locations {
-    for (NSDictionary *locationData in locations) {
-        [self addAnnotation:[[ATMMapAnnotation alloc] initWithDictionary:locationData]];
-    }
-}
+#pragma mark MKMapViewDelegate
 
 - (MKAnnotationView *)mapView:(MKMapView *)mapView
             viewForAnnotation:(id<MKAnnotation>)annotation {
@@ -83,7 +80,28 @@
     return nil;
 }
 
+#pragma mark ATMMapAnnotationDelegate
+
+- (void)displayLocation:(ATMLocation *)location {
+    NSLog(@"mapViewController display location info");
+    LocationViewController *locationViewController = [[LocationViewController alloc] initWithATMLocation:location];
+    [self.navigationController pushViewController:locationViewController
+                                         animated:YES];
+}
+
+#pragma mark ATMLocationSearchDelegate
+
+- (void)handleLocationData:(NSArray *)locations {
+    for (NSDictionary *locationData in locations) {
+        [self addAnnotation:[[ATMMapAnnotation alloc] initWithDictionary:locationData]];
+    }
+}
+
+#pragma mark private
+
 - (void)addAnnotation:(ATMMapAnnotation *)annotation {
+    annotation.delegate = self;
+    [annotation addCallout];
     [self.pinAnnotations addObject:annotation];
     [self.mapView addAnnotation:annotation];
 }

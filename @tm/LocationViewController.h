@@ -8,6 +8,7 @@
 
 @property (nonatomic) ATMLocation *location;
 
-- (id)initWithCLLocation:(CLLocation *)clLocation;
+- (id)initWithCoordinate:(CLLocationCoordinate2D)coordinate;
+- (id)initWithATMLocation:(ATMLocation *)location;
 
 @end
