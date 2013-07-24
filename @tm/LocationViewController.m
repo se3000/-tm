@@ -14,6 +14,7 @@ enum {
 @property (nonatomic) ATMTableViewCell *feeCell, *bankCell;
 @property (nonatomic) UITableViewCell *mapCell, *saveCell;
 @property (nonatomic) UIButton *saveButton;
+@property (nonatomic) MKMapView *mapView;
 
 @end
 
@@ -23,6 +24,8 @@ enum {
     if (self = [super initWithStyle:UITableViewStyleGrouped]) {
         self.location = [[ATMLocation alloc] initWithCoordinate:coordinate];
         self.tableView.contentInset = UIEdgeInsetsMake(-35, 0, 0, 0);
+        
+        self.editable = YES;
     }
     return self;
 }
@@ -39,7 +42,11 @@ enum {
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 2;
+    if (self.editable) {
+        return 2;
+    } else {
+        return 1;
+    }
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -70,6 +77,7 @@ enum {
     if (!_feeCell) {
         _feeCell = [[ATMTableViewCell alloc] init];
         _feeCell.label.text = @"Fee";
+        _feeCell.textField.keyboardType = UIKeyboardTypeDecimalPad;
     }
     return _feeCell;
 }
@@ -89,13 +97,11 @@ enum {
         
         ATMMapAnnotation *annotation = [[ATMMapAnnotation alloc] initWithCoordinate:self.location.coordinate];
         annotation.pinView.draggable = YES;
+        MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(annotation.coordinate, 1, 1);
+        [self.mapView addAnnotation:annotation];
         
-        MKMapView *mapView = [[MKMapView alloc] initWithFrame:CGRectMake(0, 0, 320, 200)];
-        mapView.delegate = self;
-        mapView.region = [mapView regionThatFits:MKCoordinateRegionMakeWithDistance(annotation.coordinate, 1, 1)];
-        [mapView addAnnotation:annotation];
-        
-        [_mapCell.contentView addSubview:mapView];
+        [_mapView setRegion:[_mapView regionThatFits:region] animated:NO];
+        [_mapCell.contentView addSubview:self.mapView];
     }
     return _mapCell;
 }
@@ -139,17 +145,16 @@ didChangeDragState:(MKAnnotationViewDragState)newState
 }
 
 - (MKAnnotationView *)mapView:(MKMapView *)mapView
-            viewForAnnotation:(ATMMapAnnotation *)annotation {    
-    return annotation.pinView;
-}
+            viewForAnnotation:(id <MKAnnotation>)annotation {
+    if ([annotation isKindOfClass:[ATMMapAnnotation class]])
+        return [annotation performSelector:@selector(pinView)];
+    return nil;}
 
 - (UIButton *)saveButton {
     if (!_saveButton) {
         _saveButton = [UIButton buttonWithType:UIButtonTypeSystem];
         [_saveButton setTitle:@"Save"
                          forState:UIControlStateNormal];
-        [_saveButton setTitle:@"Save"
-                         forState:UIControlStateDisabled];
         [_saveButton addTarget:self
                             action:@selector(saveATMLocation)
                   forControlEvents:UIControlEventTouchUpInside];
@@ -157,16 +162,20 @@ didChangeDragState:(MKAnnotationViewDragState)newState
     return _saveButton;
 }
 
+- (MKMapView *)mapView {
+    if (!_mapView) {
+        _mapView = [[MKMapView alloc] initWithFrame:CGRectMake(0, 0, 320, 200)];
+//        _mapView.showsUserLocation = YES;
+        _mapView.delegate = self;
+    }
+    return _mapView;
+}
+
 - (void)setEditable:(BOOL)editable {
     _editable = editable;
     self.feeCell.textField.enabled = editable;
     self.bankCell.textField.enabled = editable;
-    self.saveButton.enabled = editable;
-    if (editable) {
-        self.saveCell.selectionStyle = UITableViewCellSelectionStyleGray;
-    } else {
-        self.saveCell.selectionStyle = UITableViewCellSelectionStyleNone;
-    }
+    self.mapView.userInteractionEnabled = editable;
 }
 
 @end

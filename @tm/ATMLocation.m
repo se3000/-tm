@@ -17,7 +17,8 @@
     CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake(latitude, longitude);
     
     if (self = [self initWithCoordinate:coordinate]) {
-        self.fee = [[dictionary valueForKey:@"fee"] stringValue];
+        if (![[dictionary valueForKey:@"fee"] isKindOfClass:[NSNull class]])
+            self.fee = [[dictionary valueForKey:@"fee"] stringValue];
         self.bankName = [dictionary valueForKey:@"bank_name"];
     }
     return self;
@@ -35,12 +36,6 @@
              @"latitude": latitude,
              @"longitude": longitude};
     return attributes;
-}
-
-- (NSString *)fee {
-    if (!_fee)
-        _fee = @"";
-    return _fee;
 }
 
 @end

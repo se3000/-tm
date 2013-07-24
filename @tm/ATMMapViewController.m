@@ -34,17 +34,21 @@
     
     self.navigationItem.title = @"@tm";
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:100
-                                                                                          target:self.locationManager
-                                                                                          action:@selector(startUpdatingLocation)];
+                                                                                          target:self
+                                                                                          action:@selector(updateLocationData)];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
                                                                                            target:self
                                                                                            action:@selector(createNewRecord)];
     self.view = self.mapView;
 }
 
-- (void)viewWillAppear:(BOOL)animated {
+- (void)updateLocationData {
     [self.mapView removeAnnotations:self.pinAnnotations];
     [self.locationManager startUpdatingLocation];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [self updateLocationData];
 }
 
 - (void)locationManager:(CLLocationManager *)manager
@@ -53,11 +57,13 @@
     
     self.lastLocation = [locations lastObject];
     CLLocationCoordinate2D coordinate = self.lastLocation.coordinate;
-    [[ATMLocationSearchClient jsonClient] getWithCoordinate:coordinate andDelegate:self];
+    [[ATMLocationSearchClient jsonClient] getWithCoordinate:coordinate 
+                                                andDelegate:self];
     
     MKCoordinateRegion newRegion = MKCoordinateRegionMakeWithDistance(coordinate, 250, 250);
     [self.locationManager stopUpdatingLocation];
-    [self.mapView setRegion:newRegion animated:NO];
+    [self.mapView setRegion:newRegion 
+                   animated:NO];
 }
 
 - (void)locationManager:(CLLocationManager *)manager
