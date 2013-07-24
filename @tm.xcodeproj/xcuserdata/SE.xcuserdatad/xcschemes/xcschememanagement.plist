@@ -9,10 +9,20 @@
 			<key>orderHint</key>
 			<integer>0</integer>
 		</dict>
+		<key>CedarSpecs.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>7</integer>
+		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
 		<key>925300D0176EC34500C98E78</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>92FCB87017A038A700DE256B</key>
 		<dict>
 			<key>primary</key>
 			<true/>
