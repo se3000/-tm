@@ -19,7 +19,8 @@
     if (self = [self initWithCoordinate:coordinate]) {
         if (![[dictionary valueForKey:@"fee"] isKindOfClass:[NSNull class]])
             self.fee = [[dictionary valueForKey:@"fee"] stringValue];
-        self.bankName = [dictionary valueForKey:@"bank_name"];
+        if (![[dictionary valueForKey:@"bank_name"] isKindOfClass:[NSNull class]])
+            self.bankName = [dictionary valueForKey:@"bank_name"];
     }
     return self;
 }
