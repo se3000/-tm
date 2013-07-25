@@ -34,7 +34,7 @@
 		92FCB88017A038A700DE256B /* Cedar-iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92FCB87F17A038A700DE256B /* Cedar-iOS.framework */; };
 		92FCB88217A038A700DE256B /* ExampleSpec.mm in Sources */ = {isa = PBXBuildFile; fileRef = 92FCB88117A038A700DE256B /* ExampleSpec.mm */; };
 		92FCB88717A0396100DE256B /* ATMLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 92F2E18F177004D3000FB34C /* ATMLocation.m */; };
-		92FCB88817A0396100DE256B /* ATMLocationSpec.mm in Sources */ = {isa = PBXBuildFile; fileRef = 92FCB88617A0392600DE256B /* ATMLocationSpec.mm */; };
+		92FCB88817A0396100DE256B /* ATMLocationSpec.mm in Sources */ = {isa = PBXBuildFile; fileRef = 92FCB88617A0392600DE256B /* ATMLocationSpec.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		92FCB89D17A03A2600DE256B /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 925300F4176EC46D00C98E78 /* CoreLocation.framework */; };
 		92FCB8D817A03B8900DE256B /* AFHTTPClient.h in Sources */ = {isa = PBXBuildFile; fileRef = 92FCB8C517A03B8900DE256B /* AFHTTPClient.h */; };
 		92FCB8D917A03B8900DE256B /* AFHTTPRequestOperation.h in Sources */ = {isa = PBXBuildFile; fileRef = 92FCB8C717A03B8900DE256B /* AFHTTPRequestOperation.h */; };
@@ -612,6 +612,7 @@
 					"-lstdc++",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -643,6 +644,7 @@
 					"-lstdc++",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

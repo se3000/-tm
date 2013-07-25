@@ -46,6 +46,16 @@ describe(@"ATMLocation", ^{
             
             (location.bankName == nil) should be_truthy;
         });
+        
+        it(@"properly stubs methods", ^{
+            ATMLocation *location = [[ATMLocation alloc] initWithDictionary:@{}];
+            
+            spy_on(location);
+            
+            [location description];
+            
+            location should have_received("description");
+        });
     });
 });
 
